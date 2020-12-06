@@ -1,0 +1,15 @@
+:soma
+if is0 1
+  :recuperab
+  if is0 2
+    goto end
+  endif
+  dec 2
+  inc 1
+  goto recuperab
+endif
+ inc 0
+ inc 2
+ dec 1
+ goto soma
+:end
