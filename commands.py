@@ -1,33 +1,26 @@
-def dec(register):
-    register.value -= 1
+from registers import RegisterMap as dictMap
 
 
-def inc(register):
-    register.value += 1
-
-
-def is0(value, register):
-    if register.value == value:
+def is0(register):
+    if register.value == 0:
         return True
     else:
         return False
 
 
-def goto(line__name, list):
-    for x in list:
-        if line__name in x:
-            return x
-    return "TAG NÃO ENCONTRADA"
-
-
-def set0(value, register):
-    register.value = value
-
-
-def setRiRj(register__i, register__j):
-    register__i.value = register__j.value
-
-
-def add(register__i, register__j):
-    register__i.value += register__j.value
-
+def __if__(line, __dict__):
+    control = 0
+    while control == 0:
+        for x in __dict__:
+            if "inc" in line:
+                dictMap[int(x.split(" ")[2])] += 1
+            elif "dec" in line:
+                dictMap[int(x.split(" ")[2])] -= 1
+            elif "set0" in line:
+                dictMap[int(x.split(" ")[2])] = 0
+            elif "add" in line:
+                dictMap[int(x.split(" ")[2])].value += dictMap[int(x.split(" ")[3])]
+            elif "set" in line:
+                dictMap[int(x.split(" ")[2])].value = dictMap[int(x.split(" ")[3])]
+            elif "endif" in line:
+                control = 1
